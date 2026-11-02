@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class Complex {
+    double real;
+    double imag;
+
+public:
+    Complex(double r = 0, double i = 0) : real(r), imag(i) {}
+
+    Complex& operator++() {
+        ++real;
+        ++imag;
+        return *this;
+    }
+
+    Complex operator++(int) {
+        Complex temp = *this;
+        ++real;
+        ++imag;
+        return temp;
+    }
+
+    Complex& operator--() {
+        --real;
+        --imag;
+        return *this;
+    }
+
+    Complex operator--(int) {
+        Complex temp = *this;
+        --real;
+        --imag;
+        return temp;
+    }
+
+    void display() const {
+        cout << real << (imag < 0 ? " - " : " + ") << (imag < 0 ? -imag : imag) << "i" << endl;
+    }
+};
+
+int main() {
+    double r, i;
+    cout << "Enter real part: ";
+    cin >> r;
+    cout << "Enter imaginary part: ";
+    cin >> i;
+
+    Complex c(r, i);
+    cout << "Original: ";
+    c.display();
+
+    ++c;
+    cout << "After prefix increment: ";
+    c.display();
+
+    c++;
+    cout << "After postfix increment: ";
+    c.display();
+
+    --c;
+    cout << "After prefix decrement: ";
+    c.display();
+
+    c--;
+    cout << "After postfix decrement: ";
+    c.display();
+
+    return 0;
+}
